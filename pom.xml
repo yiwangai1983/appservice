@@ -131,7 +131,13 @@
     </dependency>
     <!-- log end -->
   </dependencies>
+
   <build>
     <finalName>appservice</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources/*</directory>
+      </resource>
+    </resources>
   </build>
 </project>
