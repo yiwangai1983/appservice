@@ -1,4 +1,4 @@
-package com.superc.commons.mybatis;
+package com.superc.mybatis;
 
 import com.superc.commons.bean.Page;
 import org.apache.ibatis.executor.Executor;

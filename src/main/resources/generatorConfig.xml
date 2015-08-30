@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="/Users/chao/Documents/data/jars/mysql-connector-java-5.1.36.jar"/>
+    <context id="mybatisDemoForMysql" targetRuntime="MyBatis3">
+        <!-- 控制注释 -->
+        <commentGenerator>
+            <!-- 是否去除所有自动生成的注释文件 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否去除所有自动生成的文件的时间戳，默认为false -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!-- 控制数据库 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3307/appservice?characterEncoding=utf8"
+                        userId="appservice" password="appservice"/>
+
+        <javaTypeResolver>
+            <!-- 把jdbc中的decimal与numberic类型转化为integer类型 -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- model 数据库模型 -->
+        <javaModelGenerator targetPackage="com.superc.mybatis.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- mapper.xml 控制Model的xmlMapper文件 -->
+        <sqlMapGenerator targetPackage="com.superc.mybatis.mapper"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- mapper.java 控制mapper接口 -->
+        <javaClientGenerator targetPackage="com.superc.mybatis.mapper"
+                             type="XMLMAPPER" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="methodNameCalculator" value="extended"/>
+        </javaClientGenerator>
+
+        <!--
+        表名属性映射 tableName为表名，可使用SQL通配符%和_，  domainObjectName为对应类名，如不写则默认和表名相同
+        <table schema="" tableName="usertbl" domainObjectName="UsertblDomain">
+             columnOverride 指定属性名称，不指定则以默认规则处理：字母先全变小写，然后去掉下划线，下划线后首字母大写
+            <columnOverride column="id" property="uid"/>
+        </table>
+        <table schema="" tableName="%" domainObjectName="">
+             是否使用列名做属性名，默认值为false, 处理规则：字母先全变小写，然后去掉下划线，下划线后首字母大写
+            <property name="useActualColumnNames" value="true"/>
+             指定生成主键的语句
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()+1"/>
+             指定生成列名的 替换规则
+            <columnRenamingRule searchString="flag" replaceString="FLAG"/>
+             指定生成的列名
+            <columnOverride column="id" property="uid"/>
+             忽略掉无需生成的列
+            <ignoreColumn column="sendFlag"/>
+        </table>
+        -->
+        <!-- schema你的数据库，tableName表明，domainObjectName对应你的javabean类名，是否生成相应的example -->
+        <table schema="appservice" tableName="test" domainObjectName="Test"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql"/>
+            <!--<columnOverride column="date" jdbcType="date"/>-->
+        </table>
+    </context>
+</generatorConfiguration>
