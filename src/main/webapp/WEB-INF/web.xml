@@ -58,7 +58,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:conf/spring.xml;</param-value>
+        <param-value>classpath:conf/spring.xml;classpath:conf/spring-redis.xml;</param-value>
     </context-param>
 
     <listener>
@@ -74,16 +74,19 @@
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
-    <!--<servlet>-->
-        <!--<servlet-name>springmvc</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>springmvc</servlet-name>-->
-        <!--<url-pattern>*.do</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:conf/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
@@ -93,16 +96,16 @@
     <error-page>
         <!-- 路径不正确 -->
         <error-code>404</error-code>
-        <location>/WEB-INF/errorpage/404.jsp</location>
+        <location>/pages/error/404.jsp</location>
     </error-page>
     <error-page>
         <!-- 没有访问权限，访问被禁止 -->
         <error-code>405</error-code>
-        <location>/WEB-INF/errorpage/405.jsp</location>
+        <location>/pages/error/405.jsp</location>
     </error-page>
     <error-page>
         <!-- 内部错误 -->
         <error-code>500</error-code>
-        <location>/WEB-INF/errorpage/500.jsp</location>
+        <location>/pages/error/500.jsp</location>
     </error-page>
 </web-app>
