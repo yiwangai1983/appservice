@@ -58,7 +58,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:conf/spring.xml;classpath:conf/spring-redis.xml;</param-value>
+        <param-value>classpath:conf/spring.xml;classpath:conf/spring-redis.xml;classpath:conf/spring-quartz-batch.xml;</param-value>
     </context-param>
 
     <listener>

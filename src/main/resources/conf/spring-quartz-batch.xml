@@ -40,7 +40,7 @@
         <property name="dataSource">
             <ref bean="dataSource"/>
         </property>
-        <property name="autoStartup" value="true"></property>
+        <property name="autoStartup" value="false"></property>
         <property name="overwriteExistingJobs" value="true"/>
         <property name="triggers">
             <list>
