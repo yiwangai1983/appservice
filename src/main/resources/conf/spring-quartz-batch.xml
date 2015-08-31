@@ -1,0 +1,84 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/batch
+	http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	">
+    <context:component-scan base-package="com.superc.quartz"/>
+    <!-- spring batch context -->
+    <bean id="jobRepository"
+          class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    <bean id="transactionManager"
+          class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+    <bean id="jobLauncher"
+          class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+    <bean class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
+        <property name="jobRegistry" ref="jobRegistry"/>
+    </bean>
+    <bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>
+
+    <!-- 数据源 -->
+    <bean id="quartzDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc_driverClassName}"/>
+        <property name="url" value="${jdbc_url}"/>
+        <property name="username" value="${jdbc_username}"/>
+        <property name="password" value="${jdbc_password}"/>
+    </bean>
+
+    <bean id="quartzSchedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!--  数据库连接 -->
+        <property name="dataSource">
+            <ref bean="quartzDataSource"/>
+        </property>
+        <property name="autoStartup" value="true"></property>
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="triggers">
+            <list>
+                <ref bean="testTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="testJob" class="com.superc.quartz.factory.BeanInvokingJobDetailFactoryBean">
+        <property name="concurrent" value="false"/>
+        <property name="targetBean" value="testQuartzTask"/>
+        <property name="targetMethod" value="testTask"/>
+    </bean>
+    <bean id="testTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="testJob"/>
+        <property name="cronExpression" value="*/10 * * * * ?"/>
+    </bean>
+
+    <!--<bean id="myFirstJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.superc.quartz.test.JobLauncherDetails"/>
+        <property name="group" value="quartz-batch"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="jobName" value="reportJob"/>
+            </map>
+        </property>
+    </bean>
+
+    <batch:job id="reportJob">
+        <batch:step id="test_Step1" next="test_Step2">
+            <batch:tasklet ref="testStep1" transaction-manager="transactionManager"/>
+        </batch:step>
+
+        <batch:step id="test_Step2">
+            <batch:tasklet ref="testStep2" transaction-manager="transactionManager"/>
+        </batch:step>
+    </batch:job>-->
+
+
+</beans>

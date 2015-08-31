@@ -191,7 +191,7 @@
             <version>${jedis.version}</version>
         </dependency>
         <!-- redis end-->
-        <!-- spring bath -->
+        <!-- spring bath quartz -->
         <dependency>
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-core</artifactId>
@@ -202,6 +202,18 @@
             <artifactId>spring-boot-starter-batch</artifactId>
             <version>1.2.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-infrastructure</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
+
 
     </dependencies>
 
