@@ -14,6 +14,8 @@
 
     <!-- 扫描controller（controller层注入） -->
     <context:component-scan base-package="com.superc.*.*.controller"/>
+    <!-- 扫描 http 请求 -->
+    <context:component-scan base-package="com.superc.business.httpRequest" />
 
     <!-- json 转换器 -->
     <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

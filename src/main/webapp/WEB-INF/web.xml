@@ -88,6 +88,16 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
+    <!-- cxf webservice -->
+    <!--<servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/c/*</url-pattern>
+    </servlet-mapping>-->
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

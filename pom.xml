@@ -30,6 +30,8 @@
         <!--jedis-->
         <jedis.version>2.7.3</jedis.version>
         <spring-batch.version>3.0.5.RELEASE</spring-batch.version>
+        <!-- cxf webservice -->
+        <cxf.version>3.1.2</cxf.version>
     </properties>
 
     <dependencies>
@@ -145,9 +147,9 @@
             <version>2.6.1</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>net.sf.json-lib</groupId>-->
-            <!--<artifactId>json-lib</artifactId>-->
-            <!--<version>2.4</version>-->
+        <!--<groupId>net.sf.json-lib</groupId>-->
+        <!--<artifactId>json-lib</artifactId>-->
+        <!--<version>2.4</version>-->
         <!--</dependency>-->
         <!-- alibaba牛逼的 fastjson -->
         <dependency>
@@ -191,7 +193,7 @@
             <version>${jedis.version}</version>
         </dependency>
         <!-- redis end-->
-        <!-- spring bath quartz -->
+        <!-- spring bath quartz 暂时引包 但是功能未添加-->
         <dependency>
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-core</artifactId>
@@ -212,8 +214,17 @@
             <artifactId>spring-batch-infrastructure</artifactId>
             <version>3.0.5.RELEASE</version>
         </dependency>
-
-
+        <!-- cxf start -->
+        <!--<dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>-->
 
     </dependencies>
 
