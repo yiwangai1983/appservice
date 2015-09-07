@@ -27,7 +27,7 @@ public class TestHttpRequest extends BaseController {
             requestJsonStr = super.inputStreamToJsonStr(request.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
         testBean.setCode(1);
         testBean.setMessage("请求成功");
         return testBean;
