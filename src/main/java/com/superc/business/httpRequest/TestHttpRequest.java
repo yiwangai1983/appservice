@@ -19,7 +19,7 @@ import java.io.IOException;
 public class TestHttpRequest extends BaseController {
 
     @ResponseBody
-    @RequestMapping(value = "/testHttpRequest", method = RequestMethod.POST)
+    @RequestMapping(value = "/testHttpRequest", method = {RequestMethod.POST,RequestMethod.GET})
     public ResponseBeanTest testHttpRequest(HttpServletRequest request, @RequestParam(value = "privateKey", required = true) String privateKey) {
         ResponseBeanTest testBean = new ResponseBeanTest();
         String requestJsonStr;
